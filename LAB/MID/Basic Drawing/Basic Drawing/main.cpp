@@ -1,0 +1,106 @@
+#include <GLUT/glut.h>  
+#include <stdio.h>
+#include <stdlib.h>
+#include <cmath>
+
+const float PI = 3.1416;
+
+void drawCircle(float cx, float cy, float r, int segments) {
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(cx, cy);
+    for (int i = 0; i <= segments; i++) {
+        float angle = 2 * PI * i / segments;
+        float x = cx + r * cos(angle);
+        float y = cy + r * sin(angle);
+        glVertex2f(x, y);
+    }
+    glEnd();
+}
+
+void display() {
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    // Flagpole
+    glColor3f(0.54f, 0.40f, 0.0f);
+    glBegin(GL_QUADS);
+        glVertex2f(100, 100);
+        glVertex2f(110, 100);
+        glVertex2f(110, 370);
+        glVertex2f(100, 370);
+    glEnd();
+
+    // Pole Top Triangle
+    glColor3f(0.4f, 0.2f, 0.1f);
+    glBegin(GL_TRIANGLES);
+        glVertex2f(100, 370);
+        glVertex2f(110, 370);
+        glVertex2f(105, 390);
+    glEnd();
+
+    // Green Rectangle (Flag)
+    glColor3f(0.f, 0.50f, 0.1f);
+    glBegin(GL_QUADS);
+        glVertex2f(110, 285);
+        glVertex2f(280, 285);
+        glVertex2f(280, 370);
+        glVertex2f(110, 370);
+    glEnd();
+
+    // Red Circle
+    glColor3f(0.957f, 0.0f, 0.0f);
+    drawCircle(190, 330, 30, 100);
+
+    // Flagpole Base
+    glColor3f(0.54f, 0.40f, 0.0f);
+    glBegin(GL_QUADS);
+        glVertex2f(90, 90);
+        glVertex2f(120, 90);
+        glVertex2f(120, 100);
+        glVertex2f(90, 100);
+    glEnd();
+    glColor3f(0.4f, 0.30f, 0.12f);
+    glBegin(GL_QUADS);
+        glVertex2f(80, 80);
+        glVertex2f(130, 80);
+        glVertex2f(130, 90);
+        glVertex2f(80, 90);
+    glEnd();
+    glColor3f(0.4f, 0.2f, 0.1f);
+    glBegin(GL_QUADS);
+        glVertex2f(70, 70);
+        glVertex2f(140, 70);
+        glVertex2f(140, 80);
+        glVertex2f(70, 80);
+    glEnd();
+
+    // Ground Green Border
+    glColor3f(0.0f, 0.7f, 0.0f);
+    glLineWidth(3);
+    glBegin(GL_LINE_LOOP);
+        glVertex2f(60, 50);
+        glVertex2f(150, 50);
+        glVertex2f(150, 60);
+        glVertex2f(60, 60);
+    glEnd();
+
+    glFlush();
+}
+
+void init() {
+    glClearColor(1.0, 1.0, 1.0, 1.0);  // White background
+    glMatrixMode(GL_PROJECTION);
+    gluOrtho2D(0, 640, 0, 480);
+}
+
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize(640, 480);
+    glutInitWindowPosition(100, 100);
+    glutCreateWindow("Bangladesh Flag");
+
+    init();
+    glutDisplayFunc(display);
+    glutMainLoop();
+    return 0;
+}
