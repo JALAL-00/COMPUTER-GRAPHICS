@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1703087925 source:/Users/jalalsmac/Graphics Project/Project/main.cpp
+    <iostream>
+    <OpenGL/gl.h>
+    <OpenGL/glu.h>
+    <GLUT/glut.h>
+    <cmath>
+
+# System includes used by main.cpp on macOS
+/System/Library/Frameworks/OpenGL.framework/Headers/gl.h
+/System/Library/Frameworks/OpenGL.framework/Headers/glu.h
+/System/Library/Frameworks/GLUT.framework/Headers/glut.h
+/usr/include/c++/v1/iostream
+/usr/include/c++/v1/cmath
